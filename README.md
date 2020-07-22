@@ -4,4 +4,6 @@ The employee_tracker application allows someone at a company to view and manage 
 
 This app uses node js and the following npm modules: express, mysql along with mysql Work Bench technologies.
 
-GitHub: 
+GitHub: https://github.com/coreyspratlan/employee_tracker
+
+Screencastify: https://drive.google.com/file/d/15OWsAYRLTtiJkWWc3ffOJ780622rmvw5/view

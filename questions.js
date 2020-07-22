@@ -71,7 +71,7 @@ function doWhat() {
             .prompt({
                 name: "departmentS",
                 type: "list",
-                message: "Choose a department to view:",
+                message: "Choose a department to view?",
                 choices: [
                     "Engineering",
                     "Finance",
@@ -96,7 +96,7 @@ function doWhat() {
             .prompt({
                 name: "roleS",
                 type: "list",
-                message: "Choose a role to view:",
+                message: "Choose a role to view?",
                 choices: [
                     "Senior Engineer",
                     "Junior Engineer",
@@ -125,7 +125,7 @@ function doWhat() {
             .prompt({
                 name: "employeeS",
                 type: "list",
-                message: "Choose an employee to view:",
+                message: "Choose an employee to view?",
                 choices: [
                     "Lance",
                     "Kevin",
@@ -153,7 +153,7 @@ function doWhat() {
                 .prompt({
                     name: "updateDepartmentS",
                     type: "list",
-                    message: "Choose the department to update:",
+                    message: "Choose the department to update?",
                     choices: [
                         "Engineering",
                         "Finance",
@@ -177,7 +177,7 @@ function doWhat() {
                     .prompt({
                         name: "updateEmployeeRoleS",
                         type: "list",
-                        message: "Choose the role to update:",
+                        message: "Choose the role to update?",
                         choices: [
                             "Senior Engineer",
                             "Junior Engineer",
