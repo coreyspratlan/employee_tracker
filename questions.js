@@ -67,9 +67,9 @@ function doWhat() {
                 default:
                     console.log("something went wrong");
 
-                case "Update an employee:":
-                    updateEmployee();
-                    break;
+                // case "Update an employee:":
+                //     updateEmployee();
+                //     break;
             }
         })
 }
@@ -195,31 +195,69 @@ function updateDepartment() {
 }
 
 function updateRole() {
-    inquirer
-        .prompt({
-            name: "updateEmployeeRoleS",
-            type: "list",
-            message: "Choose the role to update?",
-            choices: [
-                "Senior Engineer",
-                "Junior Engineer",
-                "Accountant",
-                "Accounting Manager",
-                "Lawyer",
-                "Legal Assistant",
-                "Sales Manager",
-                "Salesperson"
-            ]
-        })
-        .then(function (answer) {
-            console.log(answer);
+    connection.query("SELECT title FROM employeeRole", function (err, res) {
+        var role = [];
+        for (var i = 0; i < res.length; i++) {
+            role[i] = res[i].title;
+        }
+          inquirer
+              .prompt({
+                  name: "roleS",
+                  type: "list",
+                  message: "Choose a role to update?",
+                  choices: 
+                      role
+                  
+              }).then(function (answer) {
+                console.log(answer);
+                inquirer
+                .prompt({
+                    name: "newRole",
+                    type: "input",
+                    message: `Role: ${answer.roleS}`
+                }).then (function(res){
+                    connection.query(`UPDATE employeeRole SET title = "${res.newRole}" WHERE title = "${answer.roleS}"`, function (err, res) {
+                        if (err) throw err;
+                        console.table(res);
+                })
+                // let query = "SELECT * FROM department WHERE ?", {department_name: answer.departmentS};
+                
+                });
+            });
+        })       
+}
 
-            // let query = "SELECT * FROM department WHERE ?", {department_name: answer.departmentS};
-            connection.query("UPDATE employeeRole SET title = '' WHERE ?", { title: answer.updateEmployeeRoleS }, function (err, res) {
-                if (err) throw err;
-                console.table(res);
-            })
-        })
+function updateEmployee() {
+    connection.query("SELECT firstName FROM employee", function (err, res) {
+        var employee = [];
+        for (var i = 0; i < res.length; i++) {
+            employee[i] = res[i].firstName;
+        }
+          inquirer
+              .prompt({
+                  name: "employeeS",
+                  type: "list",
+                  message: "Choose an employee to update?",
+                  choices: 
+                      employee
+                  
+              }).then(function (answer) {
+                console.log(answer);
+                inquirer
+                .prompt({
+                    name: "newEmployee",
+                    type: "input",
+                    message: `Employee: ${answer.employeeS}`
+                }).then (function(res){
+                    connection.query(`UPDATE employee SET firstName = "${res.newEmployee}" WHERE firstName = "${answer.employeeS}"`, function (err, res) {
+                        if (err) throw err;
+                        console.table(res);
+                })
+                // let query = "SELECT * FROM department WHERE ?", {department_name: answer.departmentS};
+                
+                });
+            });
+        })       
 }
 
         // Add departments, roles, employees
